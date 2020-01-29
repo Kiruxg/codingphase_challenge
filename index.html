@@ -182,35 +182,47 @@
             <i class="fas fa-question-circle"></i> Frequently Asked Questions
           </h2>
           <div class="question_answer">
-            <p>When does the course start and finish?</p>
-            <p>
-              The course starts now and never ends! It is a completely
-              self-paced online course - you decide when you start and when you
-              finish.
-            </p>
+            <button class="accordion">
+              When does the course start and finish?
+              <span class="faq_collapse">+</span>
+            </button>
+            <div class="panel">
+              <p>
+                The course starts now and never ends! It is a completely
+                self-paced online course - you decide when you start and when
+                you finish.
+              </p>
+            </div>
           </div>
           <div class="question_answer">
-            <p>How long do I have access to the course?</p>
-            <p>
-              How does lifetime access sound? After enrolling, you have
-              unlimited access to this course for as long as you like - across
-              any and all devices you own.
-            </p>
+            <button class="accordion">
+              How long do I have access to the course?
+              <span class="faq_collapse">+</span>
+            </button>
+            <div class="panel">
+              <p>
+                How does lifetime access sound? After enrolling, you have
+                unlimited access to this course for as long as you like - across
+                any and all devices you own.
+              </p>
+            </div>
           </div>
           <div class="question_answer">
-            <p>What if I am unhappy with the course?</p>
-            <p>
-              We would never want you to be unhappy! If you are unsatisfied with
-              your purchase, contact us in the first 30 days and we will give
-              you a full refund.
-            </p>
+            <button class="accordion">
+              What if I am unhappy with the course?
+              <span class="faq_collapse">+</span>
+            </button>
+            <div class="panel">
+              <p>
+                We would never want you to be unhappy! If you are unsatisfied
+                with your purchase, contact us in the first 30 days and we will
+                give you a full refund.
+              </p>
+            </div>
           </div>
         </div>
       </section>
       <section id="promo" class="checkout">
-        <div class="promo_banner">
-          <p>50% off original price!</p>
-        </div>
         <div>
           <h4>Get started now!</h4>
           <div class="order_bundle">
@@ -231,6 +243,9 @@
             </div>
           </div>
           <button class="btn_primary btn_center">Pre-Order</button>
+        </div>
+        <div class="promo_banner">
+          <p>50% off original price!</p>
         </div>
       </section>
     </main>
@@ -259,8 +274,39 @@
         // Reset the video to 0
         video.currentTime = 0;
         // And play again
-        video.play();
+        var playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(_ => {
+              // Automatic playback started!
+              // Show playing UI.
+            })
+            .catch(error => {
+              // Auto-play was prevented
+              // Show paused UI.
+            });
+        }
+        // video.play();
       });
+
+      var acc = document.getElementsByClassName("accordion");
+      var plusMinusChange = document.getElementsByClassName("faq_collapse");
+      console.log(plusMinusChange[0]);
+      for (let i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var panel = this.nextElementSibling;
+          if (panel.style.maxHeight) {
+            panel.style.maxHeight = null;
+            plusMinusChange[i].textContent = "+";
+          } else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+            console.log("value of i is " + i);
+            console.log(plusMinusChange[i]);
+            plusMinusChange[i].textContent = "-";
+          }
+        });
+      }
     </script>
   </body>
 </html>

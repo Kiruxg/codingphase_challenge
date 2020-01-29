@@ -302,6 +302,36 @@ ul section li:hover {
 .faq_section {
   background-color: #f7f7f7;
 }
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 1.2em;
+  transition: 0.4s;
+}
+.accordion span {
+  font-weight: bold;
+  font-size: 24px;
+  float: right;
+}
+
+.active,
+.accordion:hover {
+  background-color: #ccc;
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
 
 .developer_group {
   background-color: rgba(227, 255, 227, 0.6);
@@ -332,27 +362,22 @@ ul section li:hover {
 
 .faq_title {
   text-align: center;
-  left: -177px;
+  left: -160px;
+  font-size: 2.4em;
 }
 
 .question_answer {
-  border: 1px solid #fff;
   border-radius: 9px;
   padding: 10px 20px;
   margin: 10px;
   line-height: 2;
-  font-size: 1.5em;
+  font-size: 1.4em;
 }
 
 .question_answer p:first-child {
   font-weight: 700;
   margin: 10px auto;
 }
-
-#promo {
-  padding-bottom: 60px;
-}
-
 .promo_banner p {
   font-weight: 700;
   font-size: 2.3em;
